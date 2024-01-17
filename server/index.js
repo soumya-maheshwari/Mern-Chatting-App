@@ -25,4 +25,4 @@ app.use(errorMiddleware);
 connectDB();
 
 // routes
-app.use("/auth", authRoutes);
+app.use("/auth", authRoutes, errorMiddleware);

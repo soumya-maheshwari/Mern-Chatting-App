@@ -12,23 +12,21 @@ const createAccessToken = (user) => {
 const login = async (req, res, next) => {
   try {
     let { username, password } = req.body;
-    email = email.toLowerCase();
 
     if (!(username && password)) {
       return next(new ErrorHandler(400, "username and password is required"));
     }
 
-    if (!validatEmail(email)) {
-      return next(new ErrorHandler(400, "Incorrect email format is provided"));
-    }
     const user = await User.findOne({ username });
     // console.log(user);
     if (!user) {
       return next(new ErrorHandler(404, "user not found"));
     }
-
+    console.log(user);
+    console.log(user.password);
+    console.log(password);
     const result = await bcrypt.compare(password, user.password);
-
+    console.log(result);
     // console.log(password);
     // console.log(user.password);
     if (!result) return next(new ErrorHandler(400, "Invalid Credentials"));
@@ -70,14 +68,21 @@ const signUp = async (req, res, next) => {
     if (user2) {
       return next(new ErrorHandler(400, "username already exists"));
     }
+    const pass = await bcrypt.hash(password, 12);
+    const newUser = new User({
+      email,
+      username,
+      password: pass,
+    });
 
-    const accessToken = createAccessToken({ id: user._id });
+    const savedUser = await newUser.save();
+    const accessToken = createAccessToken({ id: newUser._id });
 
     return res.status(200).json({
       success: true,
       msg: `Welcome , ${username}, SignUp sucessful`,
       accessToken,
-      userr,
+      user: newUser,
     });
   } catch (error) {
     next(error);
