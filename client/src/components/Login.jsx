@@ -33,6 +33,7 @@ const Login = () => {
     setLoading(true);
     dispatch(loginUserThunk(data))
       .then((res) => {
+        console.log(res);
         // setLoading(res.payload.data.isLoading);
         if (res.payload.data.success) {
           toast.success(`${res.payload.data.msg}`);

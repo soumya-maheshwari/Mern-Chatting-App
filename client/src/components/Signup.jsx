@@ -16,6 +16,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   const handleShowHide = () => {
     setShow(!show);
@@ -27,11 +28,19 @@ const Signup = () => {
     password,
   };
 
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enteredEmail);
+    setIsEmailValid(isValid);
+  };
+
   console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !password || email) {
+    if (!username || !password || !email) {
       toast.error("Fill all the fields ");
       return;
     }
@@ -72,8 +81,11 @@ const Signup = () => {
               className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
             />
+            {!isEmailValid && (
+              <p className="text-red-500 text-xs mt-1">Invalid email format</p>
+            )}
           </div>
 
           <div className="mb-4">
