@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 5000;
 
 const { errorMiddleware } = require("./middleware/errorHandler");
 
+const authRoutes = require("./routes/authRoutes");
+
 app.use(express.json());
 app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: false }));
@@ -23,3 +25,4 @@ app.use(errorMiddleware);
 connectDB();
 
 // routes
+app.use("/auth", authRoutes, errorMiddleware);
