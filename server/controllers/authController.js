@@ -90,7 +90,29 @@ const signUp = async (req, res, next) => {
   }
 };
 
+const searchUser = async (req, res, next) => {
+  try {
+    const { search } = req.query;
+
+    const user = await User.find({
+      $or: [
+        { username: { $regex: search, $options: "i" } }, // Case-insensitive username search
+        { name: { $regex: search, $options: "i" } }, // Case-insensitive name search
+      ],
+    });
+
+    return res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    next(error);
+    console.log(error);
+  }
+};
+
 module.exports = {
   login,
   signUp,
+  searchUser,
 };
