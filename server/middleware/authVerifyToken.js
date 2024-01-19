@@ -11,9 +11,9 @@ const authVerifyToken = async (req, res, next) => {
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
-      console.log(token);
+      // console.log(token);
       const verify = jwt.verify(token, process.env.JWT_ACCESS_KEY);
-      console.log(verify);
+      // console.log(verify);
       req.user = await User.findById(verify.id).select("-password");
       console.log(req.user);
       next();
