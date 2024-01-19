@@ -5,36 +5,40 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  user: {},
+  chatList: [],
 };
 
-export const registerUserThunk = createAsyncThunk(
-  "auth/signup",
-  async (data) => {
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-
-    return await Api.post(`auth/signup`, data, config)
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        return err.response;
-      });
-  }
-);
-
-export const loginUserThunk = createAsyncThunk("auth/login", async (data) => {
+export const accessChatThunk = createAsyncThunk("chat/access", async (data) => {
+  const token = JSON.parse(localStorage.getItem("token"))?.accessToken;
   const config = {
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   };
 
-  return await Api.post(`auth/login`, data, config)
+  return await Api.post(`chat/create`, data, config)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err.response;
+    });
+});
+
+export const allChatsThunk = createAsyncThunk("chat/all", async (data) => {
+  const token = JSON.parse(localStorage.getItem("token"))?.accessToken;
+  console.log(token);
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  console.log(config);
+  return await Api.get(`chat/all`, config)
     .then((res) => {
       console.log(res);
       return res;
@@ -45,46 +49,44 @@ export const loginUserThunk = createAsyncThunk("auth/login", async (data) => {
 });
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: "chat",
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
 
-      .addCase(registerUserThunk.pending, (state) => {
+      .addCase(accessChatThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUserThunk.fulfilled, (state, action) => {
+      .addCase(accessChatThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload.data.success) {
           state.isSuccess = true;
-          state.user = action.payload.data.user;
         } else {
           state.isSuccess = false;
           state.isError = true;
         }
       })
-      .addCase(registerUserThunk.rejected, (state) => {
+      .addCase(accessChatThunk.rejected, (state) => {
         state.isLoading = true;
         state.isError = true;
       })
 
-      // LOGIN USER
-      .addCase(loginUserThunk.pending, (state) => {
+      .addCase(allChatsThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginUserThunk.fulfilled, (state, action) => {
+      .addCase(allChatsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-
+        console.log(action.payload);
         if (action.payload.data.success) {
           state.isSuccess = true;
-          state.user = action.payload.data.user;
+          state.chatList = action.payload.data.chats;
         } else {
           state.isSuccess = false;
           state.isError = true;
         }
       })
-      .addCase(loginUserThunk.rejected, (state) => {
+      .addCase(allChatsThunk.rejected, (state) => {
         state.isLoading = true;
         state.isError = true;
       });

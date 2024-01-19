@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { allChatsThunk } from "../redux/chatSlice";
+import { getSender } from "../utils/utils";
 
 const ChatList = () => {
+  const dispatch = useDispatch();
+
+  const chats = useSelector((state) => state.chat.chatList);
+  console.log(chats);
   const dropDown = () => {
     document.querySelector("#submenu").classList.toggle("hidden");
     document.querySelector("#arrow").classList.toggle("rotate-0");
@@ -10,7 +17,19 @@ const ChatList = () => {
     document.querySelector(".sidebar").classList.toggle("left-[-300px]");
   };
 
-  // dropDown();
+  // useEffect(() => {
+  //   dispatch(allChatsThunk())
+  //     .then((res) => {
+  //       console.log(res);
+  //       return res;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       return err.response;
+  //     });
+  // }, []);
+  const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
+  console.log(userId);
   return (
     <div className="">
       <div className="sidebar fixed top-0 bottom-0  p-2 w-[300px] overflow-y-auto text-center bg-backgroundColor">
@@ -51,18 +70,18 @@ const ChatList = () => {
           </div>
 
           <div
-            className=" leading-7 p-2.5 mt-1 text-left items-center text-sm font-thin mt-2 w-4/5"
+            className=" leading-7 p-2.5 mt-1 text-left items-center text-sm font-thin mt-2"
             id="submenu"
           >
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              user1
-            </h1>
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              user1
-            </h1>
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              user1
-            </h1>
+            {chats &&
+              chats.map((chat) => (
+                // console.log(chat);
+                <>
+                  <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1 w-full text-[18px]">
+                    {getSender(userId, chat.users)}
+                  </h1>
+                </>
+              ))}
           </div>
 
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">

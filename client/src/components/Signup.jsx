@@ -54,9 +54,10 @@ const Signup = () => {
           setEmail("");
           setuserName("");
           setPassword("");
+          localStorage.setItem("userInfo", JSON.stringify(res.payload.data));
 
           setTimeout(() => {
-            // navigate("/");
+            navigate("/home");
           }, 2000);
         } else {
           setLoading(false);

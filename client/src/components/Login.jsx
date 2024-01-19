@@ -39,11 +39,13 @@ const Login = () => {
           toast.success(`${res.payload.data.msg}`);
           setLoading(false);
 
+          localStorage.setItem("userInfo", JSON.stringify(res.payload.data));
+
           setusername("");
           setPassword("");
 
           setTimeout(() => {
-            // navigate("/");
+            navigate("/home");
           }, 2000);
         } else {
           setLoading(false);
