@@ -10,6 +10,7 @@ const { errorMiddleware } = require("./middleware/errorHandler");
 
 const authRoutes = require("./routes/authRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 app.use(express.json());
 app.use(cors({ origin: true }));
@@ -28,3 +29,4 @@ connectDB();
 // routes
 app.use("/auth", authRoutes, errorMiddleware);
 app.use("/chat", chatRoutes, errorMiddleware);
+app.use("/message", messageRoutes, errorMiddleware);

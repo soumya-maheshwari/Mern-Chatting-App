@@ -7,6 +7,10 @@ const chatSchema = mongoose.Schema({
       ref: "User",
     },
   ],
+  latestMessage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Message",
+  },
 });
 
 module.exports = mongoose.model("Chat", chatSchema);
