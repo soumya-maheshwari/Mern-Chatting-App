@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const accessChatThunk = createAsyncThunk("chat/access", async (data) => {
-  const token = JSON.parse(localStorage.getItem("token"))?.accessToken;
+  const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -29,7 +29,7 @@ export const accessChatThunk = createAsyncThunk("chat/access", async (data) => {
 });
 
 export const allChatsThunk = createAsyncThunk("chat/all", async (data) => {
-  const token = JSON.parse(localStorage.getItem("token"))?.accessToken;
+  const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
   console.log(token);
   const config = {
     headers: {
@@ -48,7 +48,7 @@ export const allChatsThunk = createAsyncThunk("chat/all", async (data) => {
     });
 });
 
-export const authSlice = createSlice({
+export const chatSlice = createSlice({
   name: "chat",
   initialState: initialState,
   reducers: {},
@@ -93,4 +93,4 @@ export const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export default chatSlice.reducer;

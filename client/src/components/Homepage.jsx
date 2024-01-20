@@ -18,6 +18,8 @@ const HomePage = () => {
         </span>
         <ChatList />
       </div>
+
+      <ChatScreen />
     </>
   );
 };
