@@ -1,7 +1,7 @@
 const Message = require("../models/messageModel");
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
-const { ErrorHandler } = require("../middleware/ErrorHandler");
+const { ErrorHandler } = require("../middleware/errorHandler");
 
 const fetchAllMessages = async (req, res, next) => {
   try {
