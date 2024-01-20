@@ -29,11 +29,16 @@ const ChatListUser = (props) => {
   };
 
   const selectedChat = useSelector((state) => state.chat.selectedChat);
+  const isSelectedChat = useSelector(
+    (state) => state.chat.selectedChat === props.chatId
+  );
   console.log(selectedChat);
   return (
     <div>
       <h1
-        className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1 w-full text-[18px]"
+        className={`cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1 w-full text-[18px] ${
+          isSelectedChat ? "text-white bg-blue-500" : ""
+        }`}
         onClick={handleChat}
       >
         {getSender(props.userId, props.users)}

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allMessagesThunk } from "../redux/messageSlice";
 import { getSender } from "../utils/utils";
+import ChatHeader from "./ChatHeader";
 
 const Chats = ({ selectedChat }) => {
   const dispatch = useDispatch();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     dispatch(allMessagesThunk(selectedChat))
       .then((res) => {
         console.log(res);
-        setMessages(res.payload.data.messages);
+        // setMessages(res.payload.data.messages);
         return res;
       })
       .catch((err) => {
@@ -20,11 +21,16 @@ const Chats = ({ selectedChat }) => {
       });
   }, [selectedChat]);
 
+  const messages = useSelector((state) => state.message.messages);
   const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
 
   return (
     <>
-      <div className="bg-white flex-1 w-full overflow-y-auto rounded-lg p-6">
+      {/* <ChatHeader selectedChat={selectedChat} /> */}
+      <div
+        className="bg-white flex-1 w-full  overflow-y-auto rounded-lg p-6
+      max-h-[90%]"
+      >
         {/* {getSender(userId, selectedChat)} */}
         <div className="flex flex-col space-y-2">
           {messages.map((message) => (

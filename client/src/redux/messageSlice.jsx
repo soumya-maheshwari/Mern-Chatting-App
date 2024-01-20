@@ -85,7 +85,7 @@ export const messageSlice = createSlice({
         console.log(action.payload);
         if (action.payload.data.success) {
           state.isSuccess = true;
-          // state.messages = action.payload.data.messages;
+          state.messages = action.payload.data.messages;
         } else {
           state.isSuccess = false;
           state.isError = true;

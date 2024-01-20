@@ -5,7 +5,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  // chatList: null,
+  chatList: null,
   selectedChat: null,
 };
 
@@ -85,7 +85,7 @@ export const chatSlice = createSlice({
         console.log(action.payload);
         if (action.payload.data.success) {
           state.isSuccess = true;
-          // state.chatList = action.payload.data.chats;
+          state.chatList = action.payload.data.chats;
         } else {
           state.isSuccess = false;
           state.isError = true;
