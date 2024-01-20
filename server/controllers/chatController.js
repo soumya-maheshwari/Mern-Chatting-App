@@ -21,7 +21,13 @@ const createChat = async (req, res, next) => {
       select: "username email",
     });
     if (isChat.length > 0) {
-      res.send(isChat[0]);
+      // res.send(isChat[0]);
+
+      return res.status(200).json({
+        success: true,
+        msg: "chat created",
+        isChat,
+      });
     } else {
       var chatData = {
         users: [req.user._id, userId],
