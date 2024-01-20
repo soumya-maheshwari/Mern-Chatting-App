@@ -5,7 +5,8 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  chatList: [],
+  // chatList: null,
+  selectedChat: null,
 };
 
 export const accessChatThunk = createAsyncThunk("chat/access", async (data) => {
@@ -51,7 +52,11 @@ export const allChatsThunk = createAsyncThunk("chat/all", async (data) => {
 export const chatSlice = createSlice({
   name: "chat",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setSelectedChat: (state, action) => {
+      state.selectedChat = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -80,7 +85,7 @@ export const chatSlice = createSlice({
         console.log(action.payload);
         if (action.payload.data.success) {
           state.isSuccess = true;
-          state.chatList = action.payload.data.chats;
+          // state.chatList = action.payload.data.chats;
         } else {
           state.isSuccess = false;
           state.isError = true;
@@ -93,4 +98,5 @@ export const chatSlice = createSlice({
   },
 });
 
+export const { setSelectedChat } = chatSlice.actions;
 export default chatSlice.reducer;
