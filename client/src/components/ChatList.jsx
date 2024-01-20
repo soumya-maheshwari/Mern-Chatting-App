@@ -63,7 +63,7 @@ const ChatList = () => {
 
   const dropDown = () => {
     document.querySelector("#submenu").classList.toggle("hidden");
-    document.querySelector("#arrow").classList.toggle("rotate-0");
+    document.querySelector("#arrow").classList.toggle("rotate-180");
   };
 
   const openSidebar = () => {
@@ -123,7 +123,7 @@ const ChatList = () => {
             <>
               <div
                 className=" leading-7 p-2.5 mt-1 text-left items-center text-sm font-medium mt-2"
-                id="submenu"
+                id="sub-menu"
               >
                 {onSearch?.slice(0, 4).map((user) => {
                   return (
