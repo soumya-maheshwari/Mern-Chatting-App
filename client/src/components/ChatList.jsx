@@ -75,7 +75,7 @@ const ChatList = () => {
   return (
     <div className="">
       <div className="sidebar fixed top-0 bottom-0  p-2 w-[300px] overflow-y-auto text-center bg-backgroundColor">
-        <div className="text-gray-100 text-xl">
+        <div className="text-gray-100 text-xl sm:ml-0">
           <div className="p-2.5 mt-1 flex items-center">
             <h1 className="font-bold text-gray-200 ">soumya</h1>
             <i
