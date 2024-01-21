@@ -12,9 +12,13 @@ const UserList = (props) => {
     console.log(userId);
     dispatch(accessChatThunk({ userId }))
       .then((res) => {
+        console.log(res);
         if (res.payload.data.success) {
           toast.success(`${res.payload.data.msg}`);
-          dispatch(setSelectedChat(props.chatId));
+          dispatch(
+            setSelectedChat(res.payload.data.FullChat._id) ||
+              res.payload.data.isChat[0]._id
+          );
         } else {
           toast.error(`${res.payload.data.msg}`);
         }
