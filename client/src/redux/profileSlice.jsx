@@ -27,6 +27,29 @@ export const searchUserThunk = createAsyncThunk("auth/search", async (data) => {
     });
 });
 
+export const viewProfileThunk = createAsyncThunk(
+  "profile/view",
+  async (data) => {
+    const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return await Api.get(`profile/view`, config)
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err.response;
+      });
+  }
+);
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState: initialState,
@@ -47,6 +70,22 @@ export const profileSlice = createSlice({
         }
       })
       .addCase(searchUserThunk.rejected, (state) => {
+        state.isLoading = true;
+        state.isError = true;
+      })
+      .addCase(viewProfileThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(viewProfileThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.data.success) {
+          state.isSuccess = true;
+        } else {
+          state.isSuccess = false;
+          state.isError = true;
+        }
+      })
+      .addCase(viewProfileThunk.rejected, (state) => {
         state.isLoading = true;
         state.isError = true;
       });
