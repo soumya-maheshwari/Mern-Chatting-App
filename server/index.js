@@ -11,6 +11,7 @@ const { errorMiddleware } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/authRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+const profileRoutes = require("./routes/profileRoutes");
 
 app.use(express.json());
 app.use(cors({ origin: true }));
@@ -30,3 +31,4 @@ connectDB();
 app.use("/auth", authRoutes, errorMiddleware);
 app.use("/chat", chatRoutes, errorMiddleware);
 app.use("/message", messageRoutes, errorMiddleware);
+app.use("/profile", profileRoutes, errorMiddleware);

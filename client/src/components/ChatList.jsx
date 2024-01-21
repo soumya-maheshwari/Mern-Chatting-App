@@ -7,7 +7,7 @@ import { searchUserThunk } from "../redux/profileSlice";
 import { ColorRing } from "react-loader-spinner";
 import SearchUser from "./Search/SearchUser";
 import ChatListUser from "./ChatListUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ChatList = () => {
   const dispatch = useDispatch();
@@ -103,6 +103,12 @@ const ChatList = () => {
               ))}
           </div>
 
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+            <Link to="/profile">
+              <i className="bi bi-person"></i>
+              <span className="text-[15px] ml-4 text-gray-200">Profile</span>
+            </Link>
+          </div>
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
             <i className="bi bi-box-arrow-in-right"></i>
             <span
