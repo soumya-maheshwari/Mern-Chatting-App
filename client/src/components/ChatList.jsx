@@ -14,7 +14,8 @@ const ChatList = () => {
   const navigate = useNavigate();
 
   // const chats = useSelector((state) => state.chat.chatList);
-
+  const chatlists = useSelector((state) => state.chat.chatList);
+  console.log(chatlists);
   const [chats, setChats] = useState([]);
   // const selectedChat = useSelector((state) => state.chat.selectedChat);
 
@@ -77,7 +78,11 @@ const ChatList = () => {
               className="flex justify-between w-full items-center"
               onClick={dropDown}
             >
-              <span className="text-[15px] ml-4  text-gray-200">My Chats</span>
+              <Link to="/home">
+                <span className="text-[15px] ml-4  text-gray-200">
+                  My Chats
+                </span>
+              </Link>
               <span className="text-sm rotate-180" id="arrow">
                 <i className="bi bi-chevron-down"></i>
               </span>
@@ -88,8 +93,8 @@ const ChatList = () => {
             className=" leading-7 p-2.5 mt-1 text-left items-center text-sm font-thin mt-2"
             id="submenu"
           >
-            {chats &&
-              chats.map((chat) => (
+            {chatlists &&
+              chatlists.map((chat) => (
                 <>
                   <div onClick={handleChatClick(chat._id)} key={chat._id}>
                     <ChatListUser

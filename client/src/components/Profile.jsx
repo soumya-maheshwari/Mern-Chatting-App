@@ -42,7 +42,7 @@ const Profile = () => {
       </span>
       <ChatList />
 
-      <div className="lg:ml-[300px]  h-screen md:ml-0 sm:ml-0 !important bg-white text-black">
+      <div className="lg:ml-[300px] bg-backgroundColor  h-screen md:ml-0 sm:ml-0 !important  text-white">
         <div
           className="flex flex-col justify-center items-center"
           key={profile?.id}
@@ -54,7 +54,11 @@ const Profile = () => {
             My Information
           </h1>
           <div className="flex flex-col justify-center items-center">
-            <img src={image} className="rounded-full w-40 h-40 border" alt="" />
+            <img
+              src={image}
+              className="rounded-full w-40 h-40 borderwhite"
+              alt=""
+            />
           </div>
 
           <ul className="list-none p-0">

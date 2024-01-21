@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { singleChatThunk } from "../redux/chatSlice";
-import { getSender } from "../utils/utils";
+import { getOtherUser, getSender } from "../utils/utils";
 
 const ChatHeader = ({ selectedChat }) => {
   const [name, setName] = useState("");
@@ -12,15 +12,21 @@ const ChatHeader = ({ selectedChat }) => {
   console.log(selectedChat);
 
   const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
+  console.log(userId);
 
   useEffect(() => {
     dispatch(singleChatThunk(selectedChat)).then((res) => {
       console.log(res);
-      setName(getSender(userId, res.payload.data.chat.users));
+
+      if (res.payload.data.succes) {
+        setName(getSender(userId, res.payload.data.chat.users));
+        console.log(getSender(userId, res.payload.data.chat.users));
+      }
       return res;
     });
   }, [selectedChat]);
 
+  console.log(name);
   return (
     <>
       <h2 className="text-xl font-bold mb-4 text-white text-center">@{name}</h2>

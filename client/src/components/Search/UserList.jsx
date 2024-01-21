@@ -1,7 +1,11 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { accessChatThunk, setSelectedChat } from "../../redux/chatSlice";
+import {
+  accessChatThunk,
+  allChatsThunk,
+  setSelectedChat,
+} from "../../redux/chatSlice";
 import toast from "react-hot-toast";
 
 const UserList = (props) => {
@@ -19,6 +23,8 @@ const UserList = (props) => {
             setSelectedChat(res.payload.data.FullChat._id) ||
               res.payload.data.isChat[0]._id
           );
+
+          dispatch(allChatsThunk());
         } else {
           toast.error(`${res.payload.data.msg}`);
         }
