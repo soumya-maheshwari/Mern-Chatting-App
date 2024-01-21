@@ -58,11 +58,11 @@ const Profile = () => {
           </div>
 
           <ul className="list-none p-0">
-            <li className="p-3 border transition duration-500 text-center ease-in-out transform hover:bg-gray-400 mt-5 hover:scale-90">
+            <li className="p-3  transition duration-500 text-center ease-in-out transform hover:bg-gray-400 mt-5 hover:scale-90">
               <span>Email:</span> {profile ? profile.email : ""}
             </li>
 
-            <li className="p-3 border transition duration-500 text-center ease-in-out transform  hover:bg-gray-400 hover:scale-90">
+            <li className="p-3  transition duration-500 text-center ease-in-out transform  hover:bg-gray-400 hover:scale-90">
               <span>Username:</span> {profile ? profile.username : ""}
             </li>
           </ul>
