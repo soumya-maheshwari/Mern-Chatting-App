@@ -60,7 +60,9 @@ const createChat = async (req, res, next) => {
 const getAllChats = async (req, res, next) => {
   try {
     const userId = req.user._id;
-
+    if (!userId) {
+      return next(new ErrorHandler(400, "UserId param not sent with request"));
+    }
     const allChats = await Chat.find({
       users: { $elemMatch: { $eq: userId } },
     }).populate("users", "-password");
@@ -74,11 +76,39 @@ const getAllChats = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    next(new ErrorHandler(500, "Internal Server Error"));
+    next(error);
+  }
+};
+
+const getSingleChat = async (req, res, next) => {
+  try {
+    const { chatId } = req.params;
+
+    if (!chatId) {
+      return next(new ErrorHandler(400, "chatId param not sent with request"));
+    }
+
+    const chat = await Chat.findById(chatId).populate({
+      path: "users",
+      select: "-password",
+    });
+    if (!chat) {
+      return next(new ErrorHandler(400, "chat not found"));
+    }
+
+    return res.status(200).json({
+      succes: true,
+      msg: "Chat fetched",
+      chat,
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
 };
 
 module.exports = {
   createChat,
   getAllChats,
+  getSingleChat,
 };

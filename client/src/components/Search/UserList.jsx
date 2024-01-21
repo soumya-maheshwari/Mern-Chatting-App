@@ -1,17 +1,23 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { accessChatThunk } from "../../redux/chatSlice";
+import { accessChatThunk, setSelectedChat } from "../../redux/chatSlice";
+import toast from "react-hot-toast";
 
 const UserList = (props) => {
   const dispatch = useDispatch();
 
   const handleAccessChat = () => {
-    const userId = props.profile_id;
+    const userId = props.userId;
+    console.log(userId);
     dispatch(accessChatThunk({ userId }))
       .then((res) => {
-        console.log(userId);
-        console.log(res);
+        if (res.payload.data.success) {
+          toast.success(`${res.payload.data.msg}`);
+          dispatch(setSelectedChat(props.chatId));
+        } else {
+          toast.error(`${res.payload.data.msg}`);
+        }
         return res;
       })
       .catch((err) => {

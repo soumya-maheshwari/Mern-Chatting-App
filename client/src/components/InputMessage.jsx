@@ -56,7 +56,7 @@ const InputMessage = ({ selectedChat }) => {
       <span
         role="img"
         aria-label="emoji"
-        className="ml-2"
+        className="ml-2 hidden sm:flex"
         style={{ cursor: "pointer", fontSize: "1.5rem" }}
         onClick={() => setShowEmojiPicker(!showEmojiPicker)}
       >
@@ -70,7 +70,7 @@ const InputMessage = ({ selectedChat }) => {
       </button>
       {showEmojiPicker && (
         <div
-          className="flex bottom-full z-10 md:w-0 mb-9"
+          className="flex bottom-full z-10 hidden sm:flex mb-9"
           style={{
             position: "absolute",
             bottom: "45px",

@@ -7,9 +7,11 @@ import { searchUserThunk } from "../redux/profileSlice";
 import { ColorRing } from "react-loader-spinner";
 import SearchUser from "./Search/SearchUser";
 import ChatListUser from "./ChatListUser";
+import { useNavigate } from "react-router-dom";
 
 const ChatList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // const chats = useSelector((state) => state.chat.chatList);
 
@@ -43,6 +45,14 @@ const ChatList = () => {
 
   const handleChatClick = (chatId) => {
     // dispatch(setSelectedChat(chatId));
+  };
+
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.clear();
+    dispatch(setSelectedChat(null));
+    toast.success("Logout successful");
+    navigate("/");
   };
 
   const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
@@ -95,7 +105,12 @@ const ChatList = () => {
 
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
             <i className="bi bi-box-arrow-in-right"></i>
-            <span className="text-[15px] ml-4 text-gray-200">Logout</span>
+            <span
+              className="text-[15px] ml-4 text-gray-200"
+              onClick={handleLogout}
+            >
+              Logout
+            </span>
           </div>
         </div>
       </div>

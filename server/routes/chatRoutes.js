@@ -5,5 +5,6 @@ const { authVerifyToken } = require("../middleware//authVerifyToken");
 
 router.post("/create", authVerifyToken, chatController.createChat);
 router.get("/all", authVerifyToken, chatController.getAllChats);
+router.get("/:chatId", authVerifyToken, chatController.getSingleChat);
 
 module.exports = router;

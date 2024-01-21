@@ -49,6 +49,26 @@ export const allChatsThunk = createAsyncThunk("chat/all", async (data) => {
     });
 });
 
+export const singleChatThunk = createAsyncThunk("chat/single", async (data) => {
+  const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
+  console.log(token);
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  console.log(config);
+  return await Api.get(`chat/${data}`, config)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+});
+
 export const chatSlice = createSlice({
   name: "chat",
   initialState: initialState,
@@ -92,6 +112,23 @@ export const chatSlice = createSlice({
         }
       })
       .addCase(allChatsThunk.rejected, (state) => {
+        state.isLoading = true;
+        state.isError = true;
+      })
+
+      .addCase(singleChatThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(singleChatThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.data.success) {
+          state.isSuccess = true;
+        } else {
+          state.isSuccess = false;
+          state.isError = true;
+        }
+      })
+      .addCase(singleChatThunk.rejected, (state) => {
         state.isLoading = true;
         state.isError = true;
       });

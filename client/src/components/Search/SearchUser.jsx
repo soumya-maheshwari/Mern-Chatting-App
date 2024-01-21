@@ -59,7 +59,7 @@ const SearchUser = () => {
       });
   };
 
-  console.log(searchResultArray, "searchResultArray");
+  console.log(onSearch, "onSearch");
 
   return (
     <div>

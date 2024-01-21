@@ -9,10 +9,16 @@ const ChatScreen = () => {
   const selectedChat = useSelector((state) => state.chat.selectedChat);
 
   return (
-    <div className="bg-blue-600 flex flex-col items-center justify-center h-screen p-4">
-      <h2 className="text-xl font-bold mb-4 text-white text-center">
+    <div
+      className=" flex flex-col items-center justify-center h-screen p-4"
+      style={{
+        backgroundImage:
+          "radial-gradient(circle, #0a3066, #0a2959, #09224c, #081b40, #061434)",
+      }}
+    >
+      {/* <h2 className="text-xl font-bold mb-4 text-white text-center">
         Chat Screen
-      </h2>
+      </h2> */}
 
       <Chats selectedChat={selectedChat} />
 
