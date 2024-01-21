@@ -28,7 +28,9 @@ const Chats = ({ selectedChat }) => {
   const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
 
   useEffect(() => {
-    containerRef.current.scrollTop = containerRef?.current?.scrollHeight;
+    if (selectedChat) {
+      containerRef.current.scrollTop = containerRef?.current?.scrollHeight;
+    }
   }, [messages]);
 
   return (
@@ -106,7 +108,9 @@ max-h-[80%]"
           className="w-full  overflow-y-auto rounded-lg p-6
           max-h-[80%]"
           style={{
-            backgroundImage: `url(${bg1})`,
+            backgroundImage:
+              "radial-gradient(circle, #f4f8ff, #e3eefa, #d1e4f5, #bcdcef, #a6d3e7)",
+
             backgroundSize: "cover",
           }}
         >
