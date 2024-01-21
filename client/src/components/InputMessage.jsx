@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allMessagesThunk, sendMessageThunk } from "../redux/messageSlice";
 import toast from "react-hot-toast";
 import EmojiPicker from "emoji-picker-react";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:5000";
+var socket;
 
 const InputMessage = ({ selectedChat }) => {
   const dispatch = useDispatch();
@@ -28,6 +32,7 @@ const InputMessage = ({ selectedChat }) => {
         console.log(res.payload.data.success);
         if (res.payload.data.success) {
           setContent("");
+          socket.emit("new message", res.payload.data.message);
           toast.success(`${res.payload.data.msg}`);
           dispatch(allMessagesThunk(selectedChat));
         } else {
@@ -40,6 +45,16 @@ const InputMessage = ({ selectedChat }) => {
         return err.response;
       });
   };
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    // socket.emit("setup", user);
+    // socket.on("connected", () => setSocketConnected(true));
+    // socket.on("typing", () => setIsTyping(true));
+    // socket.on("stop typing", () => setIsTyping(false));
+
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="mt-4 w-full flex items-center ">

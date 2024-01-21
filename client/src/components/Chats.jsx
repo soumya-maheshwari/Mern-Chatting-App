@@ -5,17 +5,30 @@ import ChatHeader from "./ChatHeader";
 import { ColorRing } from "react-loader-spinner";
 import bg1 from "../assets/bg3.svg";
 import "./style.css";
+import io from "socket.io-client";
+import toast from "react-hot-toast";
+
+const ENDPOINT = "http://localhost:5000";
+var socket;
 
 const Chats = ({ selectedChat }) => {
   const dispatch = useDispatch();
   const containerRef = useRef();
-
   const selectedChatt = useSelector((state) => state.chat.selectedChat);
+
+  const [socketConnected, setSocketConnected] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [istyping, setIsTyping] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(user);
 
   useEffect(() => {
     dispatch(allMessagesThunk(selectedChat))
       .then((res) => {
         console.log(res);
+
+        socket.emit("join chat", selectedChat);
         return res;
       })
       .catch((err) => {
@@ -32,6 +45,33 @@ const Chats = ({ selectedChat }) => {
       containerRef.current.scrollTop = containerRef?.current?.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connected", () => setSocketConnected(true));
+    // socket.on("typing", () => setIsTyping(true));
+    // socket.on("stop typing", () => setIsTyping(false));
+
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      // if (
+      //   !selectedChatCompare || // if chat is not selected or doesn't match current chat
+      //   selectedChatCompare._id !== newMessageRecieved.chat._id
+      // ) {
+      //   if (!notification.includes(newMessageRecieved)) {
+      //     setNotification([newMessageRecieved, ...notification]);
+      //     setFetchAgain(!fetchAgain);
+      //   }
+      // } else {
+      //   setMessages([...messages, newMessageRecieved]);
+      // }
+      toast.success("hie");
+    });
+  });
 
   return (
     <>
