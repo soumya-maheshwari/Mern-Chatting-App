@@ -25,9 +25,9 @@ const fetchAllMessages = async (req, res, next) => {
 const sendMessage = async (req, res, next) => {
   const { content, chatId } = req.body;
   // console.log(chatId, "chat id");
-  if (content) {
-    next(new ErrorHandler(400, "Enter some text to send"));
-  }
+  // if (content) {
+  //   next(new ErrorHandler(400, "Enter some text to send"));
+  // }
   // console.log(req.user);
   let file = req.files ? req.files.file : null;
   let image = null;

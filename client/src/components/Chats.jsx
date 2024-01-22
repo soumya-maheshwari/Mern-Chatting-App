@@ -59,23 +59,45 @@ max-h-[80%]"
                         : "items-start"
                     }`}
                   >
-                    <div
-                      className={`${
-                        message.sender._id === userId
-                          ? "bg-green-500"
-                          : "bg-gray-500"
-                      } p-3 rounded-lg`}
-                    >
-                      <p
-                        className={`text-sm ${
-                          message.sender._id === userId
-                            ? "text-white"
-                            : "text-white"
-                        }`}
-                      >
-                        {message.content}
-                      </p>
-                    </div>
+                    {message.content && (
+                      <>
+                        <div
+                          div
+                          className={`${
+                            message.sender._id === userId
+                              ? "bg-green-500"
+                              : "bg-gray-500"
+                          } p-3 rounded-lg`}
+                        >
+                          {message.content && (
+                            <p
+                              className={`text-sm ${
+                                message.sender._id === userId
+                                  ? "text-white"
+                                  : "text-white"
+                              }`}
+                            >
+                              {message.content}
+                            </p>
+                          )}
+                        </div>
+                      </>
+                    )}
+
+                    {message.image && (
+                      <img
+                        src={message.image}
+                        className="bg-transparent w-40 h-40"
+                        alt=""
+                      />
+                    )}
+
+                    {message.video && (
+                      <video controls className="w-56 h-56 border">
+                        <source src={message.video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    )}
                   </div>
                 ))}
               </div>
