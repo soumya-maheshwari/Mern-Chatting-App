@@ -14,7 +14,7 @@ export const sendMessageThunk = createAsyncThunk(
     const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
     const config = {
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
     };

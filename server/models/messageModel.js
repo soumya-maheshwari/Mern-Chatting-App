@@ -13,6 +13,12 @@ const messageSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Chat",
   },
+  image: {
+    type: String,
+  },
+  video: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Message", messageSchema);
