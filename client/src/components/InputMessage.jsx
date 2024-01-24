@@ -90,10 +90,9 @@ const InputMessage = ({ selectedChat }) => {
   return (
     <>
       {imageUpload && <ImageDisplay imageUrl={imageUpload} />}
-
       {videoUpload && <VideoDisplay videoUrl={videoUpload} />}
 
-      <div className="mt-4 w-full flex items-center ">
+      <div className="mt-4 w-full flex items-center">
         <input
           type="text"
           placeholder="type... 🚀."
@@ -115,12 +114,21 @@ const InputMessage = ({ selectedChat }) => {
           😊
         </span>
 
-        <div className="p-2.5 absolute right-40  flex items-center rounded-md px-4 duration-300 cursor-pointer">
-          <div
-            className="p-2.5 absolute top-1/2 transform -translate-y-1/2  flex items-center rounded-md px-4 duration-300 cursor-pointer right-9 hover:bg-gray-600"
+        <div className="p-2.5  right-40  flex items-center rounded-md px-4 duration-300 cursor-pointer">
+          <span
+            role="img"
+            aria-label="emoji"
+            className="ml-2  sm:flex"
+            style={{
+              cursor: "pointer",
+              fontSize: "1.5rem",
+              marginRight: "10px",
+            }}
             onClick={handleImageIconClick}
           >
-            <i className="bi bi-image"></i>
+            🖼️
+          </span>
+          <div>
             <input
               type="file"
               name="file"
@@ -134,7 +142,7 @@ const InputMessage = ({ selectedChat }) => {
             />
           </div>
 
-          <div
+          {/* <div
             className="p-2.5 absolute top-1/2 transform -translate-y-1/2 right-1  flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gray-600"
             onClick={handleVideoIconClick}
           >
@@ -148,7 +156,7 @@ const InputMessage = ({ selectedChat }) => {
               onChange={handleSendVideo}
               // hidden
             />
-          </div>
+          </div> */}
         </div>
 
         <button

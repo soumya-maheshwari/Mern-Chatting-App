@@ -42,7 +42,7 @@ const Profile = () => {
       </span>
       <ChatList />
 
-      <div className="lg:ml-[300px] bg-backgroundColor  h-screen md:ml-0 sm:ml-0 !important  text-white">
+      <div className="lg:ml-[300px] bg-black h-screen md:ml-0 sm:ml-0 !important  text-white">
         <div
           className="flex flex-col justify-center items-center"
           key={profile?.id}
@@ -56,7 +56,7 @@ const Profile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               src={image}
-              className="rounded-full w-40 h-40 borderwhite"
+              className="rounded-full w-40 h-40 border-white border border-white border-10"
               alt=""
             />
           </div>
@@ -67,7 +67,7 @@ const Profile = () => {
             </li>
 
             <li className="p-3  transition duration-500 text-center ease-in-out transform  hover:bg-gray-400 hover:scale-90">
-              <span>Username:</span> {profile ? profile.username : ""}
+              <span>Username:</span> @{profile ? profile.username : ""}
             </li>
           </ul>
         </div>

@@ -49,40 +49,42 @@ max-h-[80%]"
             }}
           >
             {messages ? (
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2 mb-1 ">
                 {messages.map((message) => (
                   <div
                     key={message._id}
                     className={`flex ${
                       message.sender._id === userId
-                        ? "items-end justify-end"
-                        : "items-start"
+                        ? "items-end justify-end flex-col "
+                        : "items-start flex-col"
                     }`}
                   >
-                    {message.content && (
-                      <>
-                        <div
-                          div
-                          className={`${
-                            message.sender._id === userId
-                              ? "bg-green-500"
-                              : "bg-gray-500"
-                          } p-3 rounded-lg`}
-                        >
-                          {message.content && (
-                            <p
-                              className={`text-sm ${
-                                message.sender._id === userId
-                                  ? "text-white"
-                                  : "text-white"
-                              }`}
-                            >
-                              {message.content}
-                            </p>
-                          )}
-                        </div>
-                      </>
-                    )}
+                    <div className="flex flex-col">
+                      {message.content && (
+                        <>
+                          <div
+                            div
+                            className={`${
+                              message.sender._id === userId
+                                ? "bg-green-500"
+                                : "bg-gray-500"
+                            } p-3 rounded-lg`}
+                          >
+                            {message.content && (
+                              <p
+                                className={`text-sm ${
+                                  message.sender._id === userId
+                                    ? "text-white"
+                                    : "text-white"
+                                }`}
+                              >
+                                {message.content}
+                              </p>
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </div>
 
                     {message.image && (
                       <img
@@ -92,12 +94,14 @@ max-h-[80%]"
                       />
                     )}
 
-                    {message.video && (
-                      <video controls className="w-56 h-56 border">
-                        <source src={message.video} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    )}
+                    {/* {message.video && (
+                      <div className="w-[40%] ">
+                        <video controls className="w-40 h-40 bg-transparent">
+                          <video src={message.video} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    )} */}
                   </div>
                 ))}
               </div>
