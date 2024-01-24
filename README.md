@@ -12,12 +12,12 @@ This is a real-time chat website that allows users to connect with each other an
 
 1. Clone the repository:
 ```CMD
-git clone https://github.com/soumya-maheshwari/Renting-Carnival-Frontend
+git clone https://github.com/soumya-maheshwari/ChatBuddy
 ```
 
 2. Navigate to the project directory:
 ```CMD
-cd Renting-Carnival-Frontend
+cd ChatBuddy
 ```
 
 ### Frontend
