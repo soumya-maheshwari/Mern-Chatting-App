@@ -50,6 +50,29 @@ export const viewProfileThunk = createAsyncThunk(
   }
 );
 
+export const editProfileThunk = createAsyncThunk(
+  "profile/edit",
+  async (data) => {
+    const token = JSON.parse(localStorage.getItem("userInfo"))?.accessToken;
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return await Api.put(`profile/edit`, data, config)
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err.response;
+      });
+  }
+);
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState: initialState,
@@ -86,6 +109,23 @@ export const profileSlice = createSlice({
         }
       })
       .addCase(viewProfileThunk.rejected, (state) => {
+        state.isLoading = true;
+        state.isError = true;
+      })
+
+      .addCase(editProfileThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editProfileThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.data.success) {
+          state.isSuccess = true;
+        } else {
+          state.isSuccess = false;
+          state.isError = true;
+        }
+      })
+      .addCase(editProfileThunk.rejected, (state) => {
         state.isLoading = true;
         state.isError = true;
       });
