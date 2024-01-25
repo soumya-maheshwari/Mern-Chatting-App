@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allChatsThunk, setSelectedChat } from "../redux/chatSlice";
-import { getSender } from "../utils/utils";
 import { toast } from "react-hot-toast";
-import { searchUserThunk } from "../redux/profileSlice";
-import { ColorRing } from "react-loader-spinner";
 import SearchUser from "./Search/SearchUser";
 import ChatListUser from "./ChatListUser";
 import { Link, useNavigate } from "react-router-dom";
@@ -43,10 +40,6 @@ const ChatList = () => {
   useEffect(() => {
     fetchChats();
   }, []);
-
-  const handleChatClick = (chatId) => {
-    // dispatch(setSelectedChat(chatId));
-  };
 
   const handleLogout = () => {
     // Clear local storage
@@ -96,7 +89,7 @@ const ChatList = () => {
             {chatlists &&
               chatlists.map((chat) => (
                 <>
-                  <div onClick={handleChatClick(chat._id)} key={chat._id}>
+                  <div>
                     <ChatListUser
                       user2Id={chat.users[1]._id}
                       userId={userId}
