@@ -107,6 +107,7 @@ const SearchUser = () => {
                     userId={user._id}
                     username={user.username}
                     key={user._id}
+                    photo={user.photo}
                   />
                 </>
               );

@@ -8,6 +8,7 @@ import { ColorRing } from "react-loader-spinner";
 import SearchUser from "./Search/SearchUser";
 import ChatListUser from "./ChatListUser";
 import { Link, useNavigate } from "react-router-dom";
+import "./style.css";
 
 const ChatList = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,10 @@ const ChatList = () => {
 
           <SearchUser />
 
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <div
+            className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer"
+            id="chats"
+          >
             <i className="bi bi-chat-left-text-fill"></i>
             <div
               className="flex justify-between w-full items-center"
@@ -108,13 +112,30 @@ const ChatList = () => {
               ))}
           </div>
 
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <div
+            className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gradient-blue"
+            id="profile"
+          >
             <Link to="/profile">
               <i className="bi bi-person"></i>
               <span className="text-[15px] ml-4 text-gray-200">Profile</span>
             </Link>
           </div>
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <div
+            className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gradient-blue"
+            id="profile"
+          >
+            <Link to="/profile">
+              <i className="bi bi-bell"></i>
+              <span className="text-[15px] ml-4 text-gray-200">
+                Notification
+              </span>
+            </Link>
+          </div>
+          <div
+            className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer"
+            id="logout"
+          >
             <i className="bi bi-box-arrow-in-right"></i>
             <span
               className="text-[15px] ml-4 text-gray-200"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { singleChatThunk } from "../redux/chatSlice";
+import { setSelectedChat, singleChatThunk } from "../redux/chatSlice";
 import { getOtherUser, getSender } from "../utils/utils";
 
 const ChatHeader = ({ selectedChat }) => {
@@ -13,6 +13,10 @@ const ChatHeader = ({ selectedChat }) => {
 
   const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
   console.log(userId);
+
+  const handleGoBack = () => {
+    dispatch(setSelectedChat(null));
+  };
 
   useEffect(() => {
     dispatch(singleChatThunk(selectedChat)).then((res) => {
@@ -29,7 +33,15 @@ const ChatHeader = ({ selectedChat }) => {
   console.log(name);
   return (
     <>
-      <h2 className="text-xl font-bold mb-4 text-white text-center">@{name}</h2>
+      <div className="flex">
+        <i
+          className="bi bi-arrow-left text-white cursor-pointer mr-4 "
+          onClick={handleGoBack}
+        ></i>
+        <h2 className="text-xl font-bold mb-4 text-white text-center">
+          @{name}
+        </h2>
+      </div>
     </>
   );
 };

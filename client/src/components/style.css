@@ -15,3 +15,23 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #888;
 }
+
+#profile:hover,
+#logout:hover,
+#chats:hover {
+  background-image: radial-gradient(
+    circle,
+    #120f85,
+    #122190,
+    #13309b,
+    #173ea5,
+    #1e4bae,
+    #2457b8,
+    #2c64c2,
+    #3470cb,
+    #3d7fd7,
+    #488ee4,
+    #539def,
+    #5facfb
+  );
+}

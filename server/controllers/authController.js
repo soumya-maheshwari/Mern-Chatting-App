@@ -99,7 +99,7 @@ const searchUser = async (req, res, next) => {
         { username: { $regex: search, $options: "i" } }, // Case-insensitive username search
         { email: { $regex: search, $options: "i" } }, // Case-insensitive name search
       ],
-    }).select("id email username");
+    }).select("id email username photo");
 
     return res.status(200).json({
       success: true,

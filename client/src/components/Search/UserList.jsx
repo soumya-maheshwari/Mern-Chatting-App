@@ -1,5 +1,5 @@
 import React from "react";
-
+import photo from "../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   accessChatThunk,
@@ -36,8 +36,16 @@ const UserList = (props) => {
       });
   };
   return (
-    <div onClick={handleAccessChat}>
-      <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1 w-full text-[18px]">
+    <div
+      onClick={handleAccessChat}
+      className="flex gap-3 mb-3 p-2  mt-2 hover:bg-gray-700  rounded-md "
+    >
+      <img
+        src={props.photo || photo}
+        className="rounded-full  w-10 h-10 border-white border border-white border-10 cursor-pointer"
+        alt=""
+      />
+      <h1 className="cursor-pointer p-1  rounded-md mt-1 w-full text-[16px]">
         {props.username}
       </h1>
       <br />

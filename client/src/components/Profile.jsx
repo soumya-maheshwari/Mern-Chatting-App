@@ -75,16 +75,22 @@ const Profile = () => {
       </span>
       <ChatList />
 
-      <div className="lg:ml-[300px] bg-black h-screen md:ml-0 sm:ml-0 !important text-white">
+      <div
+        className="lg:ml-[300px] bg-black h-screen md:ml-0 sm:ml-0 !important text-white"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #120f85, #122190, #13309b, #173ea5, #1e4bae, #2457b8, #2c64c2, #3470cb, #3d7fd7, #488ee4, #539def, #5facfb)",
+        }}
+      >
         <div
           className="flex flex-col justify-center items-center"
           key={profile?.id}
         >
-          <h1 className="text-4xl font-bold p-3 ">Profile</h1>
+          {/* <h1 className="text-4xl font-bold p-3 ">Profile</h1> */}
         </div>
         <div>
           <h1 className="text-3xl p-3 text-center m-8 font-semibold">
-            My Information
+            My Profile
           </h1>
           <div className="flex flex-col justify-center items-center">
             {/* Profile image */}
@@ -116,19 +122,28 @@ const Profile = () => {
           </div>
 
           <ul className="list-none p-0">
-            <li className="p-3 transition duration-500 text-center ease-in-out transform hover:bg-gray-400 mt-5 hover:scale-90">
-              <span>Email:</span> {profile ? profile.email : ""}
+            <li className="p-3 transition duration-500 ease-in-out hover:bg-gray-400 mt-5 border-b border-gray-300 text-center">
+              <span className="font-semibold">Email:</span>{" "}
+              {profile ? profile.email : ""}
             </li>
 
-            <li className="p-3 transition duration-500 text-center ease-in-out transform  hover:bg-gray-400 hover:scale-90">
-              <span>Username:</span> @{profile ? profile.username : ""}
+            <li className="p-3 transition duration-500 ease-in-out hover:bg-gray-400  border-gray-300 text-center">
+              <span className="font-semibold">Username:</span> @
+              {profile ? profile.username : ""}
             </li>
           </ul>
+
           {selectedImage && (
             <div className="flex justify-center items-center mt-5">
               <button
-                className="ml-2 bg-pink-500 text-black px-2 py-2 rounded-md"
+                className="ml-2 text-white px-7 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
                 onClick={updateProfile}
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle, #06101e, #0d0b18, #0e0610, #090207, #000000)",
+                  boxShadow:
+                    "6px 9px 3px -1px rgba(255, 255, 255, 0.279), 0 2px 4px -1px rgba(255, 255, 255, 0.06)",
+                }}
               >
                 Save
               </button>
