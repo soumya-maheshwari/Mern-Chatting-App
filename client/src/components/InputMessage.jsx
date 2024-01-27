@@ -6,12 +6,14 @@ import EmojiPicker from "emoji-picker-react";
 import FormData from "form-data";
 import ImageDisplay from "./ImageDisplay";
 import VideoDisplay from "./VideoDisplay";
+import sentAudio from "../assets/sentmessage.mp3";
 
 const InputMessage = ({ selectedChat }) => {
   const dispatch = useDispatch();
   const fileInputRef = useRef(null);
   const fd = new FormData();
   const videoFileInputRef = useRef(null);
+  const audioRef = useRef(null);
 
   const [content, setContent] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -69,6 +71,9 @@ const InputMessage = ({ selectedChat }) => {
           setContent("");
           toast.success(`${res.payload.data.msg}`);
 
+          // Play the audio when the message is sent
+          audioRef.current.play();
+
           setSendImage(null);
           setImageUpload(null);
 
@@ -91,7 +96,8 @@ const InputMessage = ({ selectedChat }) => {
     <>
       {imageUpload && <ImageDisplay imageUrl={imageUpload} />}
       {videoUpload && <VideoDisplay videoUrl={videoUpload} />}
-
+      {/* audio element */}
+      <audio ref={audioRef} src={sentAudio} style={{ display: "none" }} />
       <div className="mt-4 w-full flex items-center">
         <input
           type="text"

@@ -46,7 +46,7 @@ const Login = () => {
 
           setTimeout(() => {
             navigate("/home");
-          }, 2000);
+          }, 1000);
         } else {
           setLoading(false);
           toast.error(`${res.payload.data.msg}`);
