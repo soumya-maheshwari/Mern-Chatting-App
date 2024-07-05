@@ -58,6 +58,11 @@ const Login = () => {
         return err.response;
       });
   };
+
+  const handleGuestLogin = () => {
+    setusername("im_guest");
+    setPassword("IMguest@00");
+  };
   return (
     <div
       className="bg-backgroundColor min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -103,6 +108,7 @@ const Login = () => {
               />
             )}
           </div>
+
           <div className="text-center">
             New User?{" "}
             <NavLink
@@ -142,6 +148,13 @@ const Login = () => {
               )}
             </div>
           </div>
+
+          <p
+            className="btn w-full bg-red-500 hover:bg-backgroundColor text-black hover:text-primary hover:text-white hover:border-2 border-2  text-center shadow-gray-300 shadow-md hover:shadow-2xl p-2 rounded-md cursor-pointer mt-8 font-bold"
+            onClick={handleGuestLogin}
+          >
+            Guest login
+          </p>
         </form>
       </div>
     </div>
