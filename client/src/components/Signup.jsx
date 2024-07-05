@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { registerUserThunk } from "../redux/authSlice";
 import toast from "react-hot-toast";
+import Background from "./Background/Background";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -71,7 +72,8 @@ const Signup = () => {
   };
   return (
     <div className="bg-backgroundColor min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black">
+      <Background />
+      <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black relative">
         <h2 className="text-2xl text-center mb-6 font-bold">Register</h2>
         <form>
           <div className="mb-4">

@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { loginUserThunk } from "../redux/authSlice";
 import toast from "react-hot-toast";
+import Background from "./Background/Background";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -58,12 +59,13 @@ const Login = () => {
       });
   };
   return (
-    <div className="bg-backgroundColor min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black">
+    <div className=" min-h-screen flex items-center justify-center" id="bg">
+      <Background />
+      <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black relative">
         <h2 className="text-2xl text-center mb-6 font-bold">Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">username:</label>
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium">Username:</label>
             <input
               type="username"
               id="username"
