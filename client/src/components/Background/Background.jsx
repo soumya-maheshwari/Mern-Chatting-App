@@ -42,12 +42,12 @@ const Background = () => {
       <div>
         <span className="dot"></span>
       </div>
-      <div>
+      {/* <div>
         <span className="dot"></span>
       </div>
       <div>
         <span className="dot"></span>
-      </div>
+      </div> */}
     </div>
   );
 };

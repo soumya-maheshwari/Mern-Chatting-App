@@ -113,8 +113,12 @@ const InputMessage = ({ selectedChat }) => {
         <span
           role="img"
           aria-label="emoji"
-          className="ml-2 hidden sm:flex"
-          // style={{ cursor: "pointer", fontSize: "1.5rem", marginRight: "10px" }}
+          className="ml-1 hidden sm:flex"
+          style={{
+            cursor: "pointer",
+            fontSize: "1.5rem",
+            marginRight: "-40px",
+          }}
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         >
           {/* 😊 */}
@@ -124,15 +128,15 @@ const InputMessage = ({ selectedChat }) => {
           <span
             role="img"
             aria-label="emoji"
-            className="ml-2  sm:flex"
-            // style={{
-            //   cursor: "pointer",
-            //   fontSize: "1.5rem",
-            //   marginRight: "10px",
-            // }}
+            className="ml-12  sm:flex"
+            style={{
+              cursor: "pointer",
+              fontSize: "1.5rem",
+              marginRight: "10px",
+            }}
             onClick={handleImageIconClick}
           >
-            {/* 🖼️ */}
+            🖼️
           </span>
           <div>
             <input
@@ -166,15 +170,15 @@ const InputMessage = ({ selectedChat }) => {
         </div>
 
         <button
-        // className="ml-2 bg-pink-500 text-black px-2 py-2 rounded-md"
-        // onClick={sendMessageFun}
+          className="ml-2 bg-pink-500 text-black px-2 py-2 rounded-md"
+          onClick={sendMessageFun}
         >
-          {/* Send */}
+          Send
         </button>
 
         {showEmojiPicker && (
           <div
-            className="flex bottom-full z-10 hidden sm:flex mb-9"
+            className="flex bottom-full  sm:flex mb-9"
             style={{
               position: "absolute",
               bottom: "45px",

@@ -71,7 +71,7 @@ const Signup = () => {
       });
   };
   return (
-    <div className="bg-backgroundColor min-h-screen flex items-center justify-center">
+    <div className="bg-backgroundColor min-h-screen flex items-center justify-center w-screen">
       <Background />
       <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black relative">
         <h2 className="text-2xl text-center mb-6 font-bold">Register</h2>
