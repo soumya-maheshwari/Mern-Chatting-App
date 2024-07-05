@@ -93,11 +93,19 @@ const signUp = async (req, res, next) => {
 const searchUser = async (req, res, next) => {
   try {
     const { search } = req.query;
+    const userid = req.user._id;
 
     const user = await User.find({
-      $or: [
-        { username: { $regex: search, $options: "i" } }, // Case-insensitive username search
-        { email: { $regex: search, $options: "i" } }, // Case-insensitive name search
+      $and: [
+        {
+          $or: [
+            { username: { $regex: search, $options: "i" } }, // Case-insensitive username search
+            { email: { $regex: search, $options: "i" } }, // Case-insensitive email search
+          ],
+        },
+        {
+          _id: { $ne: userid },
+        },
       ],
     }).select("id email username photo");
 

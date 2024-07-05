@@ -59,7 +59,10 @@ const Login = () => {
       });
   };
   return (
-    <div className=" min-h-screen flex items-center justify-center" id="bg">
+    <div
+      className="w-full min-h-screen flex items-center justify-center bg-cover bg-center"
+      id="bg"
+    >
       <Background />
       <div className="bg-white p-8 rounded shadow-lg w-[90%] sm:w-[60%] md:w-[50%] max-w-md text-black relative">
         <h2 className="text-2xl text-center mb-6 font-bold">Login</h2>

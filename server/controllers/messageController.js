@@ -8,7 +8,7 @@ const fetchAllMessages = async (req, res, next) => {
   try {
     // console.log(req.params.chatId);
     const messages = await Message.find({ chat: req.params.chatId })
-      .populate("sender", " email username")
+      .populate("sender", " email username photo")
       .populate("chat");
 
     return res.json({

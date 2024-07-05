@@ -98,13 +98,13 @@ const InputMessage = ({ selectedChat }) => {
       {videoUpload && <VideoDisplay videoUrl={videoUpload} />}
       {/* audio element */}
       <audio ref={audioRef} src={sentAudio} style={{ display: "none" }} />
-      <div className="mt-4 w-full flex items-center">
+      <div className="mt-4 w-full md:w-11/12 flex items-center">
         <input
           type="text"
-          placeholder="type... 🚀."
+          placeholder="Start typing.."
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="flex-1 p-2 border  border-gray-300 rounded-md focus:outline-none sm:w-300px"
+          className="flex-1 p-2 border  border-gray-300 rounded-md focus:outline-none sm:w-700px"
           style={{
             width: "calc(100% - 80px)",
           }}
@@ -114,10 +114,10 @@ const InputMessage = ({ selectedChat }) => {
           role="img"
           aria-label="emoji"
           className="ml-2 hidden sm:flex"
-          style={{ cursor: "pointer", fontSize: "1.5rem", marginRight: "10px" }}
+          // style={{ cursor: "pointer", fontSize: "1.5rem", marginRight: "10px" }}
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         >
-          😊
+          {/* 😊 */}
         </span>
 
         <div className="p-2.5  right-40  flex items-center rounded-md px-4 duration-300 cursor-pointer">
@@ -125,14 +125,14 @@ const InputMessage = ({ selectedChat }) => {
             role="img"
             aria-label="emoji"
             className="ml-2  sm:flex"
-            style={{
-              cursor: "pointer",
-              fontSize: "1.5rem",
-              marginRight: "10px",
-            }}
+            // style={{
+            //   cursor: "pointer",
+            //   fontSize: "1.5rem",
+            //   marginRight: "10px",
+            // }}
             onClick={handleImageIconClick}
           >
-            🖼️
+            {/* 🖼️ */}
           </span>
           <div>
             <input
@@ -166,10 +166,10 @@ const InputMessage = ({ selectedChat }) => {
         </div>
 
         <button
-          className="ml-2 bg-pink-500 text-black px-2 py-2 rounded-md"
-          onClick={sendMessageFun}
+        // className="ml-2 bg-pink-500 text-black px-2 py-2 rounded-md"
+        // onClick={sendMessageFun}
         >
-          Send
+          {/* Send */}
         </button>
 
         {showEmojiPicker && (

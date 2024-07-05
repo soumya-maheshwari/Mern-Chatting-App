@@ -76,11 +76,11 @@ const Profile = () => {
       <ChatList />
 
       <div
-        className="lg:ml-[300px] bg-black h-screen md:ml-0 sm:ml-0 !important text-white"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #120f85, #122190, #13309b, #173ea5, #1e4bae, #2457b8, #2c64c2, #3470cb, #3d7fd7, #488ee4, #539def, #5facfb)",
-        }}
+        className="lg:ml-[300px] bg-custom-gradient h-screen md:ml-0 sm:ml-0 !important text-white"
+        // style={{
+        //   backgroundImage:
+        //     "radial-gradient(circle, #120f85, #122190, #13309b, #173ea5, #1e4bae, #2457b8, #2c64c2, #3470cb, #3d7fd7, #488ee4, #539def, #5facfb)",
+        // }}
       >
         <div
           className="flex flex-col justify-center items-center"
@@ -101,7 +101,7 @@ const Profile = () => {
                     ? URL.createObjectURL(selectedImage)
                     : profile?.photo || image
                 }
-                className="rounded-full w-40 h-40 border-white border border-white border-10 cursor-pointer"
+                className="rounded-full w-40 h-40 border-white border  border-10 cursor-pointer"
                 alt=""
               />
             </label>

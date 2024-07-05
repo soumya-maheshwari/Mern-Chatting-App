@@ -10,7 +10,7 @@ const ChatScreen = () => {
 
   return (
     <div
-      className=" flex z-0 flex-col items-center justify-center h-screen p-4"
+      className=" flex z-0 flex-col items-center justify-center h-screen p-2"
       style={{
         backgroundImage:
           "radial-gradient(circle, #0a3066, #0a2959, #09224c, #081b40, #061434)",
